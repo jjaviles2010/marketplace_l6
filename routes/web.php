@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $helloWorld = 'Hello World';
+
+    return view('welcome', compact('helloWorld'));
+    // return view('welcome', ['x' => $helloWorld]);
 });
