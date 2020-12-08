@@ -18,31 +18,40 @@ Route::get('/', function () {
     // return view('welcome', ['x' => $helloWorld]);
 });
 
-Route::get('/admin/stores', 'Admin\\StoreController@index');
-Route::get('/admin/stores/create', 'Admin\\StoreController@create');
-Route::post('/admin/stores/store', 'Admin\\StoreController@store');
+
+Route::prefix('admin')->namespace('Admin')->group(function () {
+
+    Route::prefix('stores')->group(function () {
+
+        Route::get('/', 'StoreController@index');
+        Route::get('/create', 'StoreController@create');
+        Route::post('/store', 'StoreController@store');
+
+    });
+
+});
 
 Route::get('/user', function () {
-//    $users = \App\User::all();
+    //    $users = \App\User::all();
 
-//    Active record for inserting data
-//    $user = new \App\User();
-//    $user->name = 'Jose Javier';
-//    $user->email = 'jjaviles@teste.com';
-//    $user->password = bcrypt('12345678');
-//    $user->save();
+    //    Active record for inserting data
+    //    $user = new \App\User();
+    //    $user->name = 'Jose Javier';
+    //    $user->email = 'jjaviles@teste.com';
+    //    $user->password = bcrypt('12345678');
+    //    $user->save();
 
-// Active record for updating data
+    // Active record for updating data
 
-//     $user = \App\User::find(1);
-//     $user->name = 'Jose Javier Aviles';
-//     $user->save();
+    //     $user = \App\User::find(1);
+    //     $user->name = 'Jose Javier Aviles';
+    //     $user->save();
 
-//     \App\User::all() - returns all users
-//     \App\User::find(3) - returns user by id
-//     \App\User::where('name', 'Diamond Bins')->get() - returns collection of users matching condition
-//     \App\User::where('name', 'Diamond Bins')->first() - returns first row matching condition
-//     \App\User::paginate(10) - returns result paginated, including links to all paginated pages
+    //     \App\User::all() - returns all users
+    //     \App\User::find(3) - returns user by id
+    //     \App\User::where('name', 'Diamond Bins')->get() - returns collection of users matching condition
+    //     \App\User::where('name', 'Diamond Bins')->first() - returns first row matching condition
+    //     \App\User::paginate(10) - returns result paginated, including links to all paginated pages
 
     // Mass Assignment
 
@@ -61,7 +70,7 @@ Route::get('/user', function () {
     //     'name' => 'Lilian Remon Reitor'
     // ]);
 
-    
+
     // $user = \App\User::find(4);
     //return $user->store; //returns a store object
 
@@ -120,7 +129,7 @@ Route::get('/user', function () {
     // dd($product->categories()->detach([2]));// Dissociate Product to Category with id 2
 
     // $product->categories()->sync([1,2]); // Syncronized the relationship, if doesn't exist creates it, if has other relation 
-                                        // in the database and it isn't passed as parameter to sync will be deleted
+    // in the database and it isn't passed as parameter to sync will be deleted
 
     return \App\User::all();
 });
