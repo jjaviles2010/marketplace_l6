@@ -16,7 +16,7 @@ Route::get('/', function () {
 
     return view('welcome', compact('helloWorld'));
     // return view('welcome', ['x' => $helloWorld]);
-});
+})->name('home');
 
 
 Route::group(['middleware' => ['auth']], function(){
@@ -146,4 +146,4 @@ Route::get('/user', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
