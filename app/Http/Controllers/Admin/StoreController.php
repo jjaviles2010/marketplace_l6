@@ -55,6 +55,7 @@ class StoreController extends Controller
 
     public function update(StoreRequest $request, $store)
     {
+
         $data = $request->all();
         $store = \App\Store::find($store);
 
@@ -62,7 +63,7 @@ class StoreController extends Controller
             if(Storage::disk('public')->exists($store->logo)) {
                 Storage::disk('public')->delete($store->logo);
             }
-            
+
             $data['logo'] = $this->imageUpload($request->file('logo'));
         }
 
